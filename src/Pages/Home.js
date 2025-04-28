@@ -7,6 +7,7 @@ const Home = () => {
       <Header />
       <HomeBanner />
       <SideBar />
+      <Footer/>
     </div>
   );
 };
@@ -215,55 +216,55 @@ function RecipeCard() {
           </div>
         </div>
         <div className="uk-child-width-1-2 uk-child-width-1-3@s" data-uk-grid>
-          {
-            data.map((element,index)=>{
-                return (
-                  <>
-                    <div>
-                      <div key={index} className="uk-card">
-                        <div className="uk-card-media-top uk-inline uk-light">
-                          <img
-                            className="uk-border-rounded-medium"
-                            src={element.image}
-                            alt="Course Title"
-                          />
-                          <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium" />
-                          <div className="uk-position-xsmall uk-position-top-right">
-                            <a
-                              href="#"
-                              className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                              data-uk-icon="heart"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">
-                            {element.name}
-                          </h3>
-                          <div
-                            className="uk-text-xsmall uk-text-muted"
-                            data-uk-grid
-                          >
-                            <div className="uk-width-auto uk-flex uk-flex-middle">
-                              <span
-                                className="uk-rating-filled"
-                                data-uk-icon="icon: star; ratio: 0.7"
-                              />
-                              <span className="uk-margin-xsmall-left">{element.rating}</span>
-                              <span>({element.reviewCount})</span>
-                            </div>
-                            <div className="uk-width-expand uk-text-right">
-                              by John Keller
-                            </div>
-                          </div>
-                        </div>
-                        <a href="recipe.html" className="uk-position-cover" />
+          {data.map((element, index) => {
+            return (
+              <>
+                <div>
+                  <div key={index} className="uk-card">
+                    <div className="uk-card-media-top uk-inline uk-light">
+                      <img
+                        className="uk-border-rounded-medium"
+                        src={element.image}
+                        alt="Course Title"
+                      />
+                      <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium" />
+                      <div className="uk-position-xsmall uk-position-top-right">
+                        <a
+                          href="#"
+                          className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
+                          data-uk-icon="heart"
+                        />
                       </div>
                     </div>
-                  </>
-                );
-            })
-          }
+                    <div>
+                      <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">
+                        {element.name}
+                      </h3>
+                      <div
+                        className="uk-text-xsmall uk-text-muted"
+                        data-uk-grid
+                      >
+                        <div className="uk-width-auto uk-flex uk-flex-middle">
+                          <span
+                            className="uk-rating-filled"
+                            data-uk-icon="icon: star; ratio: 0.7"
+                          />
+                          <span className="uk-margin-xsmall-left">
+                            {element.rating}
+                          </span>
+                          <span>({element.reviewCount})</span>
+                        </div>
+                        <div className="uk-width-expand uk-text-right">
+                          by John Keller
+                        </div>
+                      </div>
+                    </div>
+                    <a href="recipe.html" className="uk-position-cover" />
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </div>
         <div className="uk-margin-large-top uk-text-small">
           <ul
@@ -295,6 +296,143 @@ function RecipeCard() {
           </ul>
         </div>
       </div>
+    </>
+  );
+}
+
+function Footer() {
+  return (
+    <>
+      <footer class="uk-section uk-section-default">
+        <div class="uk-container uk-text-secondary uk-text-500">
+          <div class="uk-child-width-1-2@s" data-uk-grid>
+            <div>
+              <a href="#" class="uk-logo">
+                Kocina
+              </a>
+            </div>
+            <div class="uk-flex uk-flex-middle uk-flex-right@s">
+              <div data-uk-grid class="uk-child-width-auto uk-grid-small">
+                <div>
+                  <a
+                    href="https://www.facebook.com/"
+                    data-uk-icon="icon: facebook; ratio: 0.8"
+                    class="uk-icon-button facebook"
+                    target="_blank"
+                  ></a>
+                </div>
+                <div>
+                  <a
+                    href="https://www.instagram.com/"
+                    data-uk-icon="icon: instagram; ratio: 0.8"
+                    class="uk-icon-button instagram"
+                    target="_blank"
+                  ></a>
+                </div>
+                <div>
+                  <a
+                    href="mailto:info@blacompany.com"
+                    data-uk-icon="icon: twitter; ratio: 0.8"
+                    class="uk-icon-button twitter"
+                    target="_blank"
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-child-width-1-2@s uk-child-width-1-4@m" data-uk-grid>
+            <div>
+              <ul class="uk-list uk-text-small">
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Presentations
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Professionals
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Stores
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="uk-list uk-text-small">
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Webinars
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Workshops
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Local Meetups
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="uk-list uk-text-small">
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Our Initiatives
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Giving Back
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Communities
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="uk-list uk-text-small">
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Contact Form
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Work With Us
+                  </a>
+                </li>
+                <li>
+                  <a class="uk-link-text" href="#">
+                    Visit Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="uk-margin-medium-top uk-text-small uk-text-muted">
+            <div>
+              Made by{" "}
+              <a
+                class="uk-link-muted"
+                href="https://unbound.studio/"
+                target="_blank"
+              >
+                Unbound Studio
+              </a>{" "}
+              in Guatemala City.
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
