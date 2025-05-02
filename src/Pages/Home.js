@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Common/Header";
 import Footer from "../Common/Footer";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const Home = () => {
   return (
     <div>
       <Header />
       <HomeBanner />
-      <SideBar />
+      <SideBar pathname='/' />
       <Footer />
     </div>
   );
@@ -54,7 +54,8 @@ function HomeBanner() {
   );
 }
 
-function SideBar() {
+export function SideBar(props) {
+  const navigate=useNavigate();
   return (
     <>
       <div className="uk-section uk-section-default">
@@ -67,109 +68,28 @@ function SideBar() {
                   className="uk-nav-default uk-nav-parent-icon uk-nav-filter uk-margin-medium-top"
                   data-uk-nav
                 >
-                  <li className="uk-parent uk-open">
-                    <a href="#">Dish Type</a>
-                    <ul className="uk-nav-sub">
-                      <li>
-                        <a href="#">Appetizers &amp; Snacks</a>
-                      </li>
-                      <li>
-                        <a href="#">Bread Recipes</a>
-                      </li>
-                      <li>
-                        <a href="#">Cake Recipes</a>
-                      </li>
-                      <li>
-                        <a href="#">Candy and Fudge</a>
-                      </li>
-                      <li>
-                        <a href="#">Casserole Recipes</a>
-                      </li>
-                      <li>
-                        <a href="#">Christmas Cookies</a>
-                      </li>
-                      <li>
-                        <a href="#">Cocktail Recipes</a>
-                      </li>
-                      <li>
-                        <a href="#">Main Dishes</a>
-                      </li>
-                      <li>
-                        <a href="#">Pasta Recipes</a>
-                      </li>
-                      <li>
-                        <a href="#">Pie Recipes</a>
-                      </li>
-                      <li>
-                        <a href="#">Sandwiches</a>
-                      </li>
-                    </ul>
-                  </li>
                   <li className="uk-parent">
                     <a href="#">Meal Type</a>
                     <ul className="uk-nav-sub">
                       <li>
-                        <a href="#">Breakfast and Brunch</a>
+                        <a onClick={() => navigate(`${props.pathname}snacks`)}>
+                          Snacks
+                        </a>
                       </li>
                       <li>
-                        <a href="#">Desserts</a>
+                        <a onClick={() => navigate(`${props.pathname}dinner`)}>
+                          Dinner
+                        </a>
                       </li>
                       <li>
-                        <a href="#">Dinners</a>
+                        <a onClick={() => navigate(`${props.pathname}lunch`)}>
+                          Lunch
+                        </a>
                       </li>
                       <li>
-                        <a href="#">Lunch</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="uk-parent">
-                    <a href="#">Diet and Health</a>
-                    <ul className="uk-nav-sub">
-                      <li>
-                        <a href="#">Diabetic</a>
-                      </li>
-                      <li>
-                        <a href="#">Gluten Free</a>
-                      </li>
-                      <li>
-                        <a href="#">High Fiber Recipes</a>
-                      </li>
-                      <li>
-                        <a href="#">Low Calorie</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="uk-parent">
-                    <a href="#">World Cuisine</a>
-                    <ul className="uk-nav-sub">
-                      <li>
-                        <a href="#">Chinese</a>
-                      </li>
-                      <li>
-                        <a href="#">Indian</a>
-                      </li>
-                      <li>
-                        <a href="#">Italian</a>
-                      </li>
-                      <li>
-                        <a href="#">Mexican</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="uk-parent">
-                    <a href="#">Seasonal</a>
-                    <ul className="uk-nav-sub">
-                      <li>
-                        <a href="#">Baby Shower</a>
-                      </li>
-                      <li>
-                        <a href="#">Birthday</a>
-                      </li>
-                      <li>
-                        <a href="#">Christmas</a>
-                      </li>
-                      <li>
-                        <a href="#">Halloween</a>
+                        <a onClick={() => navigate(`${props.pathname}dessert`)}>
+                          Dessert
+                        </a>
                       </li>
                     </ul>
                   </li>
@@ -187,15 +107,20 @@ function SideBar() {
 function RecipeCard() {
   // define state  to store api data
   const [data, setData] = useState([]);
+  const {mealname}=useParams();
   // define use navigate
   const navigate = useNavigate();
   // function to fetch api function
   const fetchData = () => {
-    fetch("https://dummyjson.com/recipes")
+    let url = "https://dummyjson.com/recipes";
+    if(mealname){
+      url = `${url}/meal-type/${mealname}`
+    }
+    fetch(url)
       .then((res) => res.json())
       .then((a) => setData(a.recipes));
   };
-  useEffect(() => fetchData(), []);
+  useEffect(() => fetchData(), [mealname]);
   console.log(data);
   return (
     <>
